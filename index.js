@@ -11,10 +11,10 @@ new DiscordStreamClient(client);
 server();
 
 client.on("ready", async () => {
-  const channel = process.env.CHANNEL_ID;
+  // const channel = process.env.CHANNEL_ID;
   console.log(`[ready] Logged in as ${client.user.tag}!`);
 
-  const voiceChannel = client.channels.cache.get(channel);
+  const voiceChannel = client.channels.cache.get(CHANNEL_ID);
   if (!voiceChannel) return console.error("[error] Voice channel not found!");
   await client.streamClient.joinVoiceChannel(voiceChannel, {
     selfDeaf: SELF_DEAF,
