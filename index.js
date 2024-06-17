@@ -4,6 +4,7 @@ const { DiscordStreamClient } = require("discord-stream-client");
 const { CHANNEL_ID, SELF_DEAF, SELF_MUTE } = require("./config/config.json");
 const fs = require("fs");
 const server = require("./server");
+const channel = process.env.CHANNEL_ID
 
 const client = new Client();
 new DiscordStreamClient(client);
@@ -12,7 +13,7 @@ server();
 client.on("ready", async () => {
   console.log(`[ready] Logged in as ${client.user.tag}!`);
 
-  const voiceChannel = client.channels.cache.get(process.env.CHANNEL_ID);
+  const voiceChannel = client.channels.cache.get(channel);
   if (!voiceChannel) return console.error("[error] Voice channel not found!");
   await client.streamClient.joinVoiceChannel(voiceChannel, {
     selfDeaf: SELF_DEAF,
