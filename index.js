@@ -4,13 +4,14 @@ const { DiscordStreamClient } = require("discord-stream-client");
 const { CHANNEL_ID, SELF_DEAF, SELF_MUTE } = require("./config/config.json");
 const fs = require("fs");
 const server = require("./server");
-const channel = process.env.CHANNEL_ID
+
 
 const client = new Client();
 new DiscordStreamClient(client);
 server();
 
 client.on("ready", async () => {
+  const channel = process.env.CHANNEL_ID;
   console.log(`[ready] Logged in as ${client.user.tag}!`);
 
   const voiceChannel = client.channels.cache.get(channel);
