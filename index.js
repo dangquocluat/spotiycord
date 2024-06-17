@@ -12,7 +12,7 @@ server();
 client.on("ready", async () => {
   console.log(`[ready] Logged in as ${client.user.tag}!`);
 
-  const voiceChannel = client.channels.cache.get(CHANNEL_ID);
+  const voiceChannel = client.channels.cache.get(process.env.CHANNEL_ID);
   if (!voiceChannel) return console.error("[error] Voice channel not found!");
   await client.streamClient.joinVoiceChannel(voiceChannel, {
     selfDeaf: SELF_DEAF,
